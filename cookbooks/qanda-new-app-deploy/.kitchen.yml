@@ -17,6 +17,7 @@ platforms:
       }
     transport:
       ssh_key: ~/.ssh/emea-sa-shared
+      elevated: true
 
 verifier:
   name: inspec
