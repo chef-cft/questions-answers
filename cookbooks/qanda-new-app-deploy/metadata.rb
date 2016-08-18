@@ -5,3 +5,6 @@ license 'all_rights'
 description 'Installs/Configures qanda-new-app-deploy'
 long_description 'Installs/Configures qanda-new-app-deploy'
 version '0.1.0'
+
+depends 'iis'
+depends 'windows'
