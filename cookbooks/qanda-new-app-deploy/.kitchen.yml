@@ -1,21 +1,27 @@
 ---
-driver:
-  name: vagrant
-
 provisioner:
   name: chef_zero
 
-# Uncomment the following verifier to leverage Inspec instead of Busser (the
-# default verifier)
-# verifier:
-#   name: inspec
-#   format: doc
-
 platforms:
   - name: windows-2012r2
+    driver:
+      name: ec2
+      aws_ssh_key_id: emea-sa-shared
+      region: eu-west-1
+      security_group_ids: ["sg-34a94053"]
+      availability_zone: b
+      associate_public_ip: true
+      tags: {
+        Name: "QandA-test-kitchen",
+        created-by: "joeg"
+      }
+    transport:
+      ssh_key: ~/.ssh/emea-sa-shared
+
+verifier:
+  name: inspec
 
 suites:
   - name: default
     run_list:
       - recipe[qanda-new-app-deploy::default]
-    attributes:
