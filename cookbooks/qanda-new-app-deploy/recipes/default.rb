@@ -46,3 +46,6 @@ remote_file 'c:/qanda.zip' do
   action :create_if_missing
 end
 
+unless Dir.exist? 'c:/Program Files/Microsoft SQL Server'
+  include_recipe 'sql_server::server'
+end
