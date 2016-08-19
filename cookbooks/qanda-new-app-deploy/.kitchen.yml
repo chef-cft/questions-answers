@@ -3,9 +3,10 @@ provisioner:
   name: chef_zero
 
 platforms:
-  - name: windows-2012r2
+  - name: windows-2012r2-sql2014exp
     driver:
       name: ec2
+      image_id: ami-28eb7e5b
       aws_ssh_key_id: emea-sa-shared
       region: eu-west-1
       security_group_ids: ["sg-34a94053"]
