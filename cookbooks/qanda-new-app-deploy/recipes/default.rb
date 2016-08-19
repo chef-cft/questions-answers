@@ -41,11 +41,13 @@ iis_app 'QandA' do
   action :add
 end
 
+# Grap app archive from S3
 remote_file 'c:/qanda.zip' do
   source 'https://s3-eu-west-1.amazonaws.com/emea-techcft/ModuleZeroSampleProject.Web.zip'
   action :create_if_missing
 end
 
+# Installation directory gate
 unless Dir.exist? 'c:/Program Files/Microsoft SQL Server'
   include_recipe 'sql_server::server'
 end
