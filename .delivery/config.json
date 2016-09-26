@@ -10,7 +10,7 @@
     "smoke",
     "functional"
    ],
-  "delivery_truck": {
+  "delivery-truck": {
     "publish": {
       "chef_server": true
     }
