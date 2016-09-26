@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+  <parameter name="Default-Web.config Connection String" description="Default Connection String used in web.config by the application to access the database." defaultValue="Server=localhost; Database=ModuleZeroSampleProject; Trusted_Connection=True;" tags="SqlConnectionString">
+    <parameterEntry kind="XmlFile" scope="C:\\Users\\chef\\repos\\questions-and-answers-github\\src\\ModuleZeroSampleProject\.Web\\obj\\Debug\\Package\\PackageTmp\\Web\.config$" match="/configuration/connectionStrings/add[@name='Default']/@connectionString" />
+  </parameter>
+</parameters>
