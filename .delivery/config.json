@@ -10,6 +10,11 @@
     "smoke",
     "functional"
    ],
+  "delivery_truck": {
+    "publish": {
+      "chef_server": true
+    }
+  },
   "build_nodes": {},
   "dependencies": []
 }
