@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures qanda-new-app-deploy'
 long_description 'Installs/Configures qanda-new-app-deploy'
-version '0.1.2'
+version '0.1.3'
 
 depends 'iis'
 depends 'windows'
