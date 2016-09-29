@@ -10,7 +10,7 @@ log "Search query: #{search_query}"
 
 my_nodes = []
 DeliverySugar::ChefServer.new('C:/delivery/ws/.chef/knife.rb').with_server_config do
-  ::Chef::Search::Query.new.search(:node, search_query) { |o| my-nodes << o }
+  ::Chef::Search::Query.new.search(:node, search_query) { |o| my_nodes << o }
 end
  
 my_nodes.map!(&:name)
