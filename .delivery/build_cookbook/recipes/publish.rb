@@ -16,7 +16,7 @@ log "Building artifact"
 # Build Package
 execute 'running msbuild' do
   command 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe ./ModuleZeroSampleProject.sln /p:VisualStudioVersion=14.0 /p:PublishProfile=Release /p:DeployOnBuild=true'
-  cwd "${node['delivery']['workspace']['repo']}/src"
+  cwd "C:/delivery/ws/aut-workflow-server/Automate/automate-org/questions-and-answers/master/build/publish/repo/src"
   action :run
 end
 
