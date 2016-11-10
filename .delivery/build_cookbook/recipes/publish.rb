@@ -20,13 +20,23 @@ execute 'running msbuild' do
   action :run
 end
 
+software_version = Time.now.strftime('%F_%H%M')
+
+# Rename war file
+execute 'rename zip' do
+  action :run
+  cwd "c:/Users/chef/deploy/"
+  command "mv QandA.zip QandA-#{software_version}.zip"
+  only_if {::File.exists?("c:/Users/chef/deploy/QandA.zip") }
+end
+
 # Upload Package to S3
 require 'rubygems'
 #require 'aws-sdk'
 require 'aws/s3'
 
 bucket_name = node['build-cookbook']['s3']['bucket_name']
-file_name = "c:/Users/chef/deploy/QandA.zip"
+file_name = "c:/Users/chef/deploy/QandA-#{software_version}.zip"
 key = File.basename(file_name)
 
 log "Uploading artifact to S3"
@@ -41,9 +51,6 @@ with_server_config do
    end
  end
 end
-
-software_version = Time.now.strftime('%F_%H%M')
-
 ruby_block 'upload data bag' do
   block do
     with_server_config do
@@ -53,7 +60,7 @@ ruby_block 'upload data bag' do
       dbag_data = {
         'id' => "app_details",
         'version' => software_version,
-        'artifact_location' => "https://s3-eu-west-1.amazonaws.com/emea-techcft/QandA.zip",
+        'artifact_location' => "https://s3-eu-west-1.amazonaws.com/emea-techcft/QandA-#{software_version}.zip",
         'artifact_type' => 'http',
         'delivery_data' => node['delivery']
       }
