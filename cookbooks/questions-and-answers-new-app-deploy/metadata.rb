@@ -4,7 +4,7 @@ maintainer_email 'you@example.com'
 license 'all_rights'
 description 'Installs/Configures questions-and-answers-new-app-deploy'
 long_description 'Installs/Configures questions-and-answers-new-app-deploy'
-version '0.1.6'
+version '0.1.7'
 
 depends 'iis'
 depends 'windows'
