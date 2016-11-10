@@ -8,6 +8,7 @@ include_recipe "delivery-truck::publish"
 
 # Remove existing war file, the mvn package command should recreate it
 directory 'c:/Users/chef/deploy/' do
+  recursive true
   action :delete
 end
 
