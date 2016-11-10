@@ -58,7 +58,7 @@ ruby_block 'upload data bag' do
       dbag_data = {
         'id' => "app_details",
         'version' => software_version,
-        'artifact_location' => "https://s3-eu-west-1.amazonaws.com/emea-techcft/deploy",
+        'artifact_location' => "https://s3-eu-west-1.amazonaws.com/emea-techcft/QandA-#{software_version}.zip",
         'artifact_type' => 'http',
         'delivery_data' => node['delivery']
       }

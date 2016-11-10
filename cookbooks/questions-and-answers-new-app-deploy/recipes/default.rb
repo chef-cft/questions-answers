@@ -15,6 +15,12 @@ windows_feature 'IIS-ASPNET45' do
   all true
 end
 
+windows_package "Install webdeploy" do
+    source 'http://download.microsoft.com/download/D/4/4/D446D154-2232-49A1-9D64-F5A9429913A4/WebDeploy_amd64_en-US.msi'
+    installer_type :msi
+    action :install
+end
+
 # Stop and delete the default site
 iis_site 'Default Web Site' do
   action [:stop, :delete]
@@ -41,19 +47,14 @@ iis_app 'QandA' do
   action :add
 end
 
-# Grap app archive from S3
-remote_file 'c:/qanda.zip' do
-  source 'https://s3-eu-west-1.amazonaws.com/emea-techcft/ModuleZeroSampleProject.Web.zip'
-  action :create_if_missing
+app_data = data_bag_item('questions-and-answers', 'app_details')
+
+windows_zipfile 'c:/Users/chef/QandA/' do
+  source app_data['artifact_location']
+  action :unzip
 end
 
 # Installation directory gate
 unless Dir.exist? 'c:/Program Files/Microsoft SQL Server'
   include_recipe 'sql_server::server'
-end
-
-windows_package "Install webdeploy" do
-    source 'http://download.microsoft.com/download/D/4/4/D446D154-2232-49A1-9D64-F5A9429913A4/WebDeploy_amd64_en-US.msi'
-    installer_type :msi
-    action :install
 end
