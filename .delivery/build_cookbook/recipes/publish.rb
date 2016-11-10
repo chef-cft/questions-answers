@@ -42,13 +42,6 @@ with_server_config do
  end
 end
 
-checksum = ''
-ruby_block 'get checksum' do
-  block do
-    checksum = `sha256sum #{file_name}`.split[0]
-  end
-end
-
 software_version = Time.now.strftime('%F_%H%M')
 
 ruby_block 'upload data bag' do
@@ -61,7 +54,6 @@ ruby_block 'upload data bag' do
         'id' => "app_details",
         'version' => software_version,
         'artifact_location' => "https://s3-eu-west-1.amazonaws.com/emea-techcft/QandA.zip",
-        'artifact_checksum' => checksum,
         'artifact_type' => 'http',
         'delivery_data' => node['delivery']
       }
