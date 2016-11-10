@@ -51,3 +51,9 @@ end
 unless Dir.exist? 'c:/Program Files/Microsoft SQL Server'
   include_recipe 'sql_server::server'
 end
+
+windows_package "Install webdeploy" do
+    source 'http://download.microsoft.com/download/D/4/4/D446D154-2232-49A1-9D64-F5A9429913A4/WebDeploy_amd64_en-US.msi'
+    installer_type :msi
+    action :install
+end
