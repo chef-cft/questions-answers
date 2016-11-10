@@ -1,0 +1,1 @@
+default['build-cookbook']['s3']['bucket_name'] = "emea-techcft"
