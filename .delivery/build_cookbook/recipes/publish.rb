@@ -26,7 +26,7 @@ require 'rubygems'
 require 'aws/s3'
 
 bucket_name = node['build-cookbook']['s3']['bucket_name']
-file_name = "~/deploy/QandA.zip"
+file_name = "c:/Users/chef/deploy/QandA.zip"
 key = File.basename(file_name)
 
 log "Uploading artifact to S3"
