@@ -7,7 +7,7 @@
 include_recipe "delivery-truck::publish"
 
 # Remove existing war file, the mvn package command should recreate it
-directory '~/deploy'  
+directory '~/deploy' do
   action :delete
 end
 
