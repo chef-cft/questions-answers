@@ -54,6 +54,13 @@ windows_zipfile 'c:/Users/chef/QandA/' do
   action :unzip
 end
 
+# Build Package
+execute 'deploying app' do
+  command 'QandA.deploy.cmd /Y'
+  cwd "c:/Users/chef/QandA/"
+  action :run
+end
+
 # Installation directory gate
 unless Dir.exist? 'c:/Program Files/Microsoft SQL Server'
   include_recipe 'sql_server::server'
