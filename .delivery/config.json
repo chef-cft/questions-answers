@@ -8,10 +8,7 @@
     "security",
     "quality",
     "smoke",
-    "functional",
-    "unit",
-    "lint",
-    "syntax"
+    "functional"
    ],
   "delivery-truck": {
     "publish": {
