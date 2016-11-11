@@ -62,7 +62,7 @@ end
 # Build Package
 execute 'deploying app' do
   command 'QandA.deploy.cmd /Y'
-  cwd node'application']['staging_dir']
+  cwd node['application']['staging_dir']
   action :run
 end
 
