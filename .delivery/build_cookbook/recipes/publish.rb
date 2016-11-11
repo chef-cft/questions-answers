@@ -7,7 +7,7 @@
 include_recipe "delivery-truck::publish"
 
 # Remove existing war file, the mvn package command should recreate it
-directory 'c:/Users/chef/deploy/' do
+directory node['build-cookbook']['build_dir'] do
   recursive true
   action :delete
 end
@@ -23,8 +23,8 @@ end
 
 software_version = Time.now.strftime('%F_%H%M')
 
-windows_zipfile "c:/Users/chef/deploy/QandA-#{software_version}.zip" do
-  source "c:/Users/chef/deploy"
+windows_zipfile "#{node['build-cookbook']['build_dir']}/QandA-#{software_version}.zip" do
+  source node['build-cookbook']['build_dir']
   action :zip
 end
 
@@ -34,7 +34,7 @@ require 'rubygems'
 require 'aws/s3'
 
 bucket_name = node['build-cookbook']['s3']['bucket_name']
-file_name = "c:/Users/chef/deploy/QandA-#{software_version}.zip"
+file_name = "#{node['build-cookbook']['build_dir']}/QandA-#{software_version}.zip"
 key = File.basename(file_name)
 
 log "Uploading artifact to S3"

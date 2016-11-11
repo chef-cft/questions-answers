@@ -26,7 +26,7 @@ iis_site 'Default Web Site' do
   action [:stop, :delete]
 end
 
-directory 'c:\inetpub\wwwroot\qanda' do
+directory node['application']['web_root'] do
   recursive true
   action :create
 end
@@ -34,7 +34,7 @@ end
 iis_site 'Chef Site' do
   protocol :http
   port 80
-  path 'c:/inetpub/wwwroot/qanda'
+  path node['application']['web_root']
   action [:add, :start]
 end
 
@@ -42,19 +42,19 @@ end
 iis_app 'QandA' do
   site_name 'Chef Site'
   path '/QandA'
-  physical_path 'c:/inetpub/wwwroot/qanda'
+  physical_path node['application']['web_root']
   enabled_protocols 'http'
   action :add
 end
 
 app_data = data_bag_item('questions-and-answers', 'app_details')
 
-directory 'c:/Users/chef/QandA/' do
+directory node'application']['staging_dir'] do
   action :delete
   recursive true
 end
 
-windows_zipfile 'c:/Users/chef/QandA/' do
+windows_zipfile node'application']['staging_dir'] do
   source app_data['artifact_location']
   action :unzip
 end
@@ -62,7 +62,7 @@ end
 # Build Package
 execute 'deploying app' do
   command 'QandA.deploy.cmd /Y'
-  cwd "c:/Users/chef/QandA/"
+  cwd node'application']['staging_dir']
   action :run
 end
 
