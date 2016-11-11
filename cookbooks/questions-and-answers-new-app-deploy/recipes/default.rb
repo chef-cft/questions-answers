@@ -49,6 +49,11 @@ end
 
 app_data = data_bag_item('questions-and-answers', 'app_details')
 
+directory 'c:/Users/chef/QandA/' do
+  action :delete
+  recursive true
+end
+
 windows_zipfile 'c:/Users/chef/QandA/' do
   source app_data['artifact_location']
   action :unzip
