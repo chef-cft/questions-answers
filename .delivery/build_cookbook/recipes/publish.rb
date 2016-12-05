@@ -14,10 +14,10 @@ end
 
 log "Building artifact from #{node['delivery']['workspace']['repo']}"
 
-# Build Package
-execute 'running msbuild' do
+# Build and Publish Package
+execute 'running msbuild publish profile' do
   command '"C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe" ./ModuleZeroSampleProject.sln /p:VisualStudioVersion=14.0 /p:PublishProfile=Release /p:DeployOnBuild=true'
-  cwd "C:/delivery/ws/aut-workflow-server/Automate/automate-org/questions-and-answers/master/build/publish/repo/src"
+  cwd "#{node['delivery']['workspace']['repo']}/src"
   action :run
 end
 
