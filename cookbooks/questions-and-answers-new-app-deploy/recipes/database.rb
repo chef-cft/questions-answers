@@ -7,7 +7,7 @@ end
 sql_server_database 'ModuleZeroSampleProject' do
   connection(
     :host     => 'localhost',
-    :port     => node['sql_server']['port'],
+    :port     => 1433,
     :username => 'sa',
     :password => node['sql_server']['server_sa_password'],
     :options  => { 'ANSI_NULLS' => 'ON', 'QUOTED_IDENTIFIER' => 'OFF' }
