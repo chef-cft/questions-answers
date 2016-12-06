@@ -10,7 +10,7 @@ windows_feature 'IIS-WebServerRole' do
   all true
 end
 
-windows_feature 'IIS-ASPNET40' do
+windows_feature 'IIS-ASPNET45' do
   action :install
   all true
 end
@@ -21,7 +21,13 @@ windows_package "Install webdeploy" do
     action :install
 end
 
-include_recipe 'questions-and-answers::database'
+#windows_package "Install .Net Developer Pack" do
+#    source 'https://download.microsoft.com/download/4/3/B/43B61315-B2CE-4F5B-9E32-34CCA07B2F0E/NDP452-KB2901951-x86-x64-DevPack.exe'
+#    installer_type :msi
+#    action :install
+#end
+
+include_recipe 'questions-and-answers-new-app-deploy::database'
 
 # Stop and delete the default site
 iis_site 'Default Web Site' do
@@ -31,6 +37,11 @@ end
 directory node['application']['web_root'] do
   recursive true
   action :create
+end
+
+iis_pool 'DefaultAppPool' do
+  action :config
+  pool_identity :LocalSystem
 end
 
 iis_site 'Chef Site' do
