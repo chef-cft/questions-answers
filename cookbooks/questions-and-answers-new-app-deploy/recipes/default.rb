@@ -10,7 +10,7 @@ windows_feature 'IIS-WebServerRole' do
   all true
 end
 
-windows_feature 'IIS-ASPNET45' do
+windows_feature 'IIS-ASPNET40' do
   action :install
   all true
 end
@@ -20,6 +20,8 @@ windows_package "Install webdeploy" do
     installer_type :msi
     action :install
 end
+
+include_recipe 'questions-and-answers::database'
 
 # Stop and delete the default site
 iis_site 'Default Web Site' do
@@ -64,9 +66,4 @@ execute 'deploying app' do
   command 'QandA.deploy.cmd /Y'
   cwd node['application']['staging_dir']
   action :run
-end
-
-# Installation directory gate
-unless Dir.exist? 'c:/Program Files/Microsoft SQL Server'
-  include_recipe 'sql_server::server'
 end
