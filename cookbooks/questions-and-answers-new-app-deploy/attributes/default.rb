@@ -6,3 +6,5 @@ default['sql_server']['agent_account'] = false
 
 default['application']['web_root'] = 'c:/inetpub/wwwroot/qanda'
 default['application']['staging_dir'] = 'c:/Users/chef/QandA/'
+
+default['database']['name'] = 'ModuleZeroSampleProject'
