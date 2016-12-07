@@ -49,7 +49,7 @@ include_recipe 'questions-and-answers-new-app-deploy::database'
 iis_app 'QandA' do
   site_name 'Chef Site'
   path '/QandA'
-  physical_path node['application']['web_root']
+  physical_path "${node['application']['web_root']}/QandA"
   enabled_protocols 'http'
   action :add
 end
