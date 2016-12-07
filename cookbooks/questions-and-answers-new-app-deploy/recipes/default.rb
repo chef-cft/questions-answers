@@ -21,14 +21,6 @@ windows_package "Install webdeploy" do
     action :install
 end
 
-#windows_package "Install .Net Developer Pack" do
-#    source 'https://download.microsoft.com/download/4/3/B/43B61315-B2CE-4F5B-9E32-34CCA07B2F0E/NDP452-KB2901951-x86-x64-DevPack.exe'
-#    installer_type :msi
-#    action :install
-#end
-
-include_recipe 'questions-and-answers-new-app-deploy::database'
-
 # Stop and delete the default site
 iis_site 'Default Web Site' do
   action [:stop, :delete]
@@ -50,6 +42,8 @@ iis_site 'Chef Site' do
   path node['application']['web_root']
   action [:add, :start]
 end
+
+include_recipe 'questions-and-answers-new-app-deploy::database'
 
 # Create the application on IIS
 iis_app 'QandA' do
@@ -76,5 +70,11 @@ end
 execute 'deploying app' do
   command 'QandA.deploy.cmd /Y'
   cwd node['application']['staging_dir']
+  action :run
+end
+
+execute "migrate database" do
+  command "./migrate.exe C:/inetpub/wwwroot/qanda/bin/ModuleZeroSampleProject.EntityFramework.dll /connectionString=\"Server=localhost; Database=ModuleZeroSampleProject;Integrated Security=true\"  /connectionProviderName=\"System.Data.SqlClient\""
+  cwd "c:/inetpub/temp"
   action :run
 end
