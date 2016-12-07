@@ -72,9 +72,3 @@ execute 'deploying app' do
   cwd node['application']['staging_dir']
   action :run
 end
-
-execute "migrate database" do
-  command "c:/inetpub/temp/migrate.exe ModuleZeroSampleProject.EntityFramework.dll /connectionString=\"Server=localhost; Database=ModuleZeroSampleProject;Integrated Security=true\"  /connectionProviderName=\"System.Data.SqlClient\""
-  cwd "C:/inetpub/wwwroot/qanda/bin"
-  action :run
-end
