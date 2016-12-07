@@ -46,7 +46,7 @@ end
 # Create the application on IIS
 iis_app 'QandA' do
   site_name 'Chef Site'
-  path '/QandA'
+  path '/'
   physical_path node['application']['web_root']
   enabled_protocols 'http'
   action :add
