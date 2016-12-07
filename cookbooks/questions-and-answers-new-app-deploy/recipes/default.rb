@@ -43,8 +43,6 @@ iis_site 'Chef Site' do
   action [:add, :start]
 end
 
-include_recipe 'questions-and-answers-new-app-deploy::database'
-
 # Create the application on IIS
 iis_app 'QandA' do
   site_name 'Chef Site'
@@ -72,3 +70,5 @@ execute 'deploying app' do
   cwd node['application']['staging_dir']
   action :run
 end
+
+include_recipe 'questions-and-answers-new-app-deploy::database'
