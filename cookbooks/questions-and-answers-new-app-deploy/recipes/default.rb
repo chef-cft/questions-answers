@@ -39,7 +39,7 @@ end
 iis_site 'Chef Site' do
   protocol :http
   port 80
-  path node['application']['web_root']
+  path node['site']['web_root']
   action [:add, :start]
 end
 
@@ -47,7 +47,7 @@ end
 iis_app 'QandA' do
   site_name 'Chef Site'
   path '/QandA'
-  physical_path "${node['application']['web_root']}/QandA"
+  physical_path node['application']['web_root']
   enabled_protocols 'http'
   action :add
 end
