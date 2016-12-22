@@ -9,3 +9,5 @@ default['site']['web_root'] = 'c:/inetpub/wwwroot'
 default['application']['staging_dir'] = 'c:/Users/chef/QandA/'
 
 default['database']['name'] = 'ModuleZeroSampleProject'
+
+default['application']['name'] = 'ModuleZeroSample'
