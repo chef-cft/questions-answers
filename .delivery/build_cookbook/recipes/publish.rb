@@ -12,12 +12,12 @@ directory node['build-cookbook']['build_dir'] do
   action :delete
 end
 
-log "Building artifact"
+log "Building artifact from #{node['delivery']['workspace']['repo']}"
 
-# Build Package
-execute 'running msbuild' do
-  command 'C:/Windows/Microsoft.NET/Framework64/v4.0.30319/MSBuild.exe ./ModuleZeroSampleProject.sln /p:VisualStudioVersion=14.0 /p:PublishProfile=Release /p:DeployOnBuild=true'
-  cwd "C:/delivery/ws/aut-workflow-server/Automate/automate-org/questions-and-answers/master/build/publish/repo/src"
+# Build and Publish Package
+execute 'running msbuild publish profile' do
+  command '"C:/Program Files (x86)/MSBuild/14.0/Bin/MSBuild.exe" ./ModuleZeroSampleProject.sln /p:VisualStudioVersion=14.0 /p:PublishProfile=Release /p:DeployOnBuild=true'
+  cwd "#{node['delivery']['workspace']['repo']}/src"
   action :run
 end
 
