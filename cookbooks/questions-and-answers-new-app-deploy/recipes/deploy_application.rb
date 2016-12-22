@@ -11,13 +11,13 @@ iis_site 'Chef Site' do
 end
 
 # Create the application on IIS
-iis_app 'QandA' do
-  site_name 'Chef Site'
-  path '/'
-  physical_path node['application']['web_root']
-  enabled_protocols 'http'
-  action :add
-end
+#iis_app 'QandA' do
+#  site_name 'Chef Site'
+#  path '/'
+#  physical_path node['application']['web_root']
+#  enabled_protocols 'http'
+#  action :add
+#end
 
 app_data = data_bag_item('questions-and-answers', 'app_details')
 
