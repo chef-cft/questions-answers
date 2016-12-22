@@ -11,3 +11,5 @@ include_recipe 'questions-and-answers-new-app-deploy::setup_iis'
 include_recipe 'questions-and-answers-new-app-deploy::deploy_application'
 
 include_recipe 'questions-and-answers-new-app-deploy::database'
+
+include_recipe 'questions-and-answers-new-app-deploy::customize_application'
