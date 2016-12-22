@@ -1,4 +1,4 @@
-directory node['application']['web_root'] do
+directory node['site']['web_root'] do
   recursive true
   action :create
 end
