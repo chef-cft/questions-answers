@@ -37,3 +37,10 @@ execute 'deploying app' do
   cwd node['application']['staging_dir']
   action :run
 end
+
+# add a virtual directory to an application under a site
+iis_vdir 'Chef Site/' do
+  action :add
+  path '/'
+  physical_path node['application']['web_root']
+end
