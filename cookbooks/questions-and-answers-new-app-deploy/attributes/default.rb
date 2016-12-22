@@ -4,7 +4,7 @@ default['sql_server']['agent_startup'] = 'Automatic'
 default['sql_server']['browser_startup'] = 'Automatic'
 default['sql_server']['agent_account'] = false
 
-default['site']['web_root'] = 'c:/inetpub/wwwroot/QandA'
+default['site']['web_root'] = 'c:/inetpub/wwwroot'
 
 default['application']['web_root'] = 'c:/inetpub/wwwroot'
 default['application']['staging_dir'] = 'c:/Users/chef/QandA/'
